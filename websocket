@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebSocket Server</title>
+  </head>
+  <body>
+    <h1>WebSocket Server</h1>
+
+    <script>
+      // Create a new WebSocket server
+      const server = new WebSocket('ws://localhost:1934');
+
+      // Event listener for connection established
+      server.onopen = () => {
+        console.log('WebSocket server started.');
+      };
+
+      // Event listener for receiving messages
+      server.onmessage = event => {
+        const message = event.data;
+        console.log(`Received message: ${message}`);
+
+        // Send a response back to the client
+        server.send('Server received your message.');
+      };
+
+      // Event listener for disconnection
+      server.onclose = () => {
+        console.log('WebSocket server stopped.');
+      };
+    </script>
+  </body>
+</html>
